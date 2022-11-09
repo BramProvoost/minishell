@@ -6,7 +6,7 @@
 /*   By: bprovoos <bprovoos@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/11/09 14:38:42 by bprovoos      #+#    #+#                 */
-/*   Updated: 2022/11/09 16:03:47 by bprovoos      ########   odam.nl         */
+/*   Updated: 2022/11/09 20:47:51 by bprovoos      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int	dolar_special_case(t_line_lst **line_lst, char next_char)
 	return (2);
 }
 
-int	dolar_sign_case(t_line_lst **line_lst, char *line)
+int	dolar_sign_case(t_line_lst **line_lst, char *line, t_quote *qoute)
 {
 	int		len;
 	t_note	type;
@@ -76,8 +76,8 @@ int	dolar_sign_case(t_line_lst **line_lst, char *line)
 		return (1);
 	}
 	len = 1;
-	while (is_word(line[len]))
+	while (is_word(line[len], qoute))
 		len++;
-	add_at_end_of_list(line_lst, e_var, ft_substr(line, 1, len));
+	add_at_end_of_list(line_lst, e_var, ft_substr(line, 1, len - 1));
 	return (len);
 }

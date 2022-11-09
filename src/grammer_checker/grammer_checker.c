@@ -6,11 +6,12 @@
 /*   By: bprovoos <bprovoos@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/11/09 11:23:56 by bprovoos      #+#    #+#                 */
-/*   Updated: 2022/11/09 16:02:11 by bprovoos      ########   odam.nl         */
+/*   Updated: 2022/11/09 17:11:20 by bprovoos      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "grammer_checker.h"
+#include <stdio.h>	// temp printf
 
 int	is_valid_cmd(t_note last_type)
 {
@@ -65,7 +66,7 @@ int	is_valid_type(t_note type, t_line_lst *node)
 {
 	t_note	last_type;
 
-	last_type = get_last_type(node);
+	last_type = get_last_type(node);	// works only when bulding the list
 	if (type == e_cmd)
 		return (is_valid_cmd(last_type));
 	if (type == e_file)
@@ -81,10 +82,23 @@ int	is_valid_type(t_note type, t_line_lst *node)
 
 int	is_valid_grammer(t_line_lst *head)
 {
-	if (!head)
+	t_note	last_type;
+	t_note	current_type;
+	t_note	next_type;
+
+	last_type = e_start;
+	while (head != NULL)
 	{
-		ft_putendl_fd("gammer is not valid", 1);
-		return (0);
+		current_type = head->type;
+		if (head->next)
+			next_type = head->next->type;
+		else
+			next_type = e_stop;
+		printf("last %d\n", last_type);
+		printf("current %d\n", current_type);
+		printf("next %d\n", next_type);
+		last_type = head->type;
+		head = head->next;
 	}
 	return (1);
 }

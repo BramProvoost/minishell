@@ -25,7 +25,8 @@ MAIN_FILES =	main.c \
 
 PARSER_FILES =	parser.c \
 				list.c \
-				special_charakters.c
+				special_charakters.c \
+				qoutes.c
 
 GRAMMER_CKECKER_FILES =	grammer_checker.c
 

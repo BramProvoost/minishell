@@ -6,7 +6,7 @@
 /*   By: bprovoos <bprovoos@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/06 14:36:20 by bprovoos      #+#    #+#                 */
-/*   Updated: 2022/11/09 16:08:19 by bprovoos      ########   odam.nl         */
+/*   Updated: 2022/11/09 17:12:58 by bprovoos      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ int	shell(char *line, char **envp)
 
 	line_lst = parser(line);
 	show_t_list(line_lst, line);
-	if (!is_valid_grammer(line_lst))
-		return (1);
+	// if (!is_valid_grammer(line_lst))
+	// 	return (1);
 	// test_lists(line_lst, envp);
 	delete_t_list(&line_lst);
 	envp = NULL;	// temp until using envp
