@@ -6,11 +6,13 @@
 /*   By: bprovoos <bprovoos@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/12 09:55:42 by bprovoos      #+#    #+#                 */
-/*   Updated: 2022/11/09 11:27:08 by bprovoos      ########   odam.nl         */
+/*   Updated: 2022/11/10 19:23:07 by bprovoos      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 /* sources
+Example:
+https://github.com/nickdotht/minishell
 Example:
 https://github.com/yabtaour/Minishell-42
 bash flow
@@ -38,6 +40,8 @@ https://github.com/Snaipe/Criterion
 */
 #ifndef MAIN_H
 # define MAIN_H
+
+
 
 # include <stdio.h>
 # include <stdlib.h>

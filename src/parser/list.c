@@ -6,7 +6,7 @@
 /*   By: bprovoos <bprovoos@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/11/09 13:50:10 by bprovoos      #+#    #+#                 */
-/*   Updated: 2022/11/09 16:02:11 by bprovoos      ########   odam.nl         */
+/*   Updated: 2022/11/10 14:33:57 by bprovoos      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,10 @@ char	*type_to_string(t_note type)
 		return ("delimiter");
 	if (type == e_append)
 		return ("append\t");
+	if (type == e_qoute)
+		return ("single qoute");
+	if (type == e_dqoute)
+		return ("double qoute");
 	return ("no type");
 }
 

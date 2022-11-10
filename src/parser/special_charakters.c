@@ -6,16 +6,15 @@
 /*   By: bprovoos <bprovoos@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/11/09 14:38:42 by bprovoos      #+#    #+#                 */
-/*   Updated: 2022/11/09 20:47:51 by bprovoos      ########   odam.nl         */
+/*   Updated: 2022/11/10 17:55:54 by bprovoos      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-int	pipe_case(t_line_lst **line_lst)
+void	pipe_case(t_line_lst **line_lst)
 {
 	add_at_end_of_list(line_lst, e_pipe, "|");
-	return (1);
 }
 
 int	less_than_case(t_line_lst **line_lst, char *line)
@@ -23,10 +22,10 @@ int	less_than_case(t_line_lst **line_lst, char *line)
 	if (line[1] == '<')
 	{
 		add_at_end_of_list(line_lst, e_delimiter, "<<");
-		return (2);
+		return (1);
 	}
 	add_at_end_of_list(line_lst, e_redirect_i, "<");
-	return (1);
+	return (0);
 }
 
 int	greater_than_case(t_line_lst **line_lst, char *line)
@@ -34,10 +33,10 @@ int	greater_than_case(t_line_lst **line_lst, char *line)
 	if (line[1] == '>')
 	{
 		add_at_end_of_list(line_lst, e_append, ">>");
-		return (2);
+		return (1);
 	}
 	add_at_end_of_list(line_lst, e_redirect_o, ">");
-	return (1);
+	return (0);
 }
 
 int	dolar_special_case(t_line_lst **line_lst, char next_char)
@@ -53,12 +52,11 @@ int	dolar_special_case(t_line_lst **line_lst, char next_char)
 		add_at_end_of_list(line_lst, type, "$$");
 	if (next_char == '?')
 		add_at_end_of_list(line_lst, type, "$?");
-	return (2);
+	return (1);
 }
 
-int	dolar_sign_case(t_line_lst **line_lst, char *line, t_quote *qoute)
+int	dolar_sign_case(t_line_lst **line_lst, char *line)
 {
-	int		len;
 	t_note	type;
 
 	type = get_last_type(*line_lst);
@@ -71,13 +69,6 @@ int	dolar_sign_case(t_line_lst **line_lst, char *line, t_quote *qoute)
 	if (line[1] == '?')
 		return (dolar_special_case(line_lst, '?'));
 	if (line[1] == ' ' || line[1] == '\0')
-	{
 		add_at_end_of_list(line_lst, type, "$");
-		return (1);
-	}
-	len = 1;
-	while (is_word(line[len], qoute))
-		len++;
-	add_at_end_of_list(line_lst, e_var, ft_substr(line, 1, len - 1));
-	return (len);
+	return (0);
 }

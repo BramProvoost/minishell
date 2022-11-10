@@ -6,22 +6,32 @@
 /*   By: bprovoos <bprovoos@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/13 15:28:56 by bprovoos      #+#    #+#                 */
-/*   Updated: 2022/11/09 21:12:39 by bprovoos      ########   odam.nl         */
+/*   Updated: 2022/11/10 20:29:22 by bprovoos      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-int	is_word(char c, t_quote *qoute)
+int	is_word(char c)
 {
+	// if (c == '\'')
+	// 	return (single_qoute_case(qoute));
+	// if (c == '\"')
+	// 	return (double_qoute_case(qoute));
+	// if (qoute->is_single && c != '\0' && c != '$')
+	// 	return (1);
+	// if (qoute->is_double && c != '\0')
+	// 	return (1);
 	if (ft_isalpha(c))
 		return (1);
 	if (ft_isdigit(c))
 		return (1);
 	if (c == '-')
 		return (1);
-	if (c == '$' && qoute->is_single)
-		return (1);
+	// if (ft_strchr("-", c) != NULL)
+	// 	return (1);
+	// if (c == '$' && qoute->is_single)
+	// 	return (1);
 	return (0);
 }
 
@@ -38,7 +48,7 @@ t_note	get_last_type(t_line_lst *node)
 	return (type);
 }
 
-int	word_case(t_line_lst **line_lst, char *line, t_quote *qoute)
+int	word_case(t_line_lst **line_lst, char *line)
 {
 	int		i;
 	int		len;
@@ -46,10 +56,10 @@ int	word_case(t_line_lst **line_lst, char *line, t_quote *qoute)
 
 	i = 0;
 	last = get_last_type(*line_lst);
-	if (is_word(line[i], qoute))
+	if (is_word(line[i]))
 	{
 		len = 0;
-		while (is_word(line[i + len], qoute))
+		while (is_word(line[i + len]))
 			len++;
 		if (last == e_start || last == e_pipe)
 			add_at_end_of_list(line_lst, e_cmd, ft_substr(line, i, len));
@@ -59,34 +69,60 @@ int	word_case(t_line_lst **line_lst, char *line, t_quote *qoute)
 			add_at_end_of_list(line_lst, e_file, ft_substr(line, i, len));
 		i += len;
 	}
-	return (i + 1);
+	return (i);
+}
+
+int	qoute_case(t_line_lst **line_lst, char c, int *qoutes)
+{
+	if (c == '\'' && *qoutes != DOUBLE_QOUTE)
+	{
+		if (*qoutes == SINGLE_QOUTE)
+			*qoutes = 0;
+		else
+		{
+			*qoutes = SINGLE_QOUTE;
+			add_at_end_of_list(line_lst, e_qoute, "\'");
+		}
+		return (1);
+	}
+	if (c == '\"' && *qoutes != SINGLE_QOUTE)
+	{
+		if (*qoutes == DOUBLE_QOUTE)
+			*qoutes = 0;
+		else
+		{
+			*qoutes = DOUBLE_QOUTE;
+			add_at_end_of_list(line_lst, e_dqoute, "\"");
+		}
+		return (1);
+	}
+	return (0);
 }
 
 t_line_lst	*parser(char *line)
 {
 	int			i;
+	int			qoutes;
 	t_line_lst	*line_lst;
-	t_quote		*quote;
 
 	i = 0;
+	qoutes = 0;
 	line_lst = NULL;
-	quote = init_qoutes();
 	while (line[i] != '\0')
 	{
-		if (is_word(line[i], quote))
-			i += word_case(&line_lst, &line[i], quote);
-		if (line[i] == '|')
-			i += pipe_case(&line_lst);
-		if (line[i] == '<')
-			i += less_than_case(&line_lst, &line[i]);
-		if (line[i] == '>')
-			i += greater_than_case(&line_lst, &line[i]);
-		if (line[i] == '$')
-			i += dolar_sign_case(&line_lst, &line[i], quote);
-		if (line[i] == '\'')
-			i += single_qoute_case(quote);
-		if (line[i] == '"')
-			i += double_qoute_case(quote);
+		// if (line[i] == '\'' || line[i] == '\"')
+		// 	i += qoute_case(&line_lst, line[i], &qoutes);
+		// if (line[i] == '$')
+		// 	dolar_sign_case(&line_lst, &line[i]);
+		if (is_word(line[i]))
+			i += word_case(&line_lst, &line[i]);
+		// if (line[i] == '|')
+		// 	pipe_case(&line_lst);
+		// if (line[i] == '<')
+		// 	i += less_than_case(&line_lst, &line[i]);
+		// if (line[i] == '>')
+		// 	i += greater_than_case(&line_lst, &line[i]);
+		i++;
 	}
 	return (line_lst);
 }
