@@ -6,15 +6,16 @@
 /*   By: bprovoos <bprovoos@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/11/09 14:38:42 by bprovoos      #+#    #+#                 */
-/*   Updated: 2022/11/10 17:55:54 by bprovoos      ########   odam.nl         */
+/*   Updated: 2022/11/16 09:41:21 by bprovoos      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-void	pipe_case(t_line_lst **line_lst)
+int	pipe_case(t_line_lst **line_lst)
 {
 	add_at_end_of_list(line_lst, e_pipe, "|");
+	return (1);
 }
 
 int	less_than_case(t_line_lst **line_lst, char *line)
@@ -22,10 +23,10 @@ int	less_than_case(t_line_lst **line_lst, char *line)
 	if (line[1] == '<')
 	{
 		add_at_end_of_list(line_lst, e_delimiter, "<<");
-		return (1);
+		return (2);
 	}
 	add_at_end_of_list(line_lst, e_redirect_i, "<");
-	return (0);
+	return (1);
 }
 
 int	greater_than_case(t_line_lst **line_lst, char *line)
@@ -33,10 +34,10 @@ int	greater_than_case(t_line_lst **line_lst, char *line)
 	if (line[1] == '>')
 	{
 		add_at_end_of_list(line_lst, e_append, ">>");
-		return (1);
+		return (2);
 	}
 	add_at_end_of_list(line_lst, e_redirect_o, ">");
-	return (0);
+	return (1);
 }
 
 int	dolar_special_case(t_line_lst **line_lst, char next_char)
@@ -58,6 +59,7 @@ int	dolar_special_case(t_line_lst **line_lst, char next_char)
 int	dolar_sign_case(t_line_lst **line_lst, char *line)
 {
 	t_note	type;
+	int		i;
 
 	type = get_last_type(*line_lst);
 	if (type == e_start || type == e_pipe)
@@ -70,5 +72,9 @@ int	dolar_sign_case(t_line_lst **line_lst, char *line)
 		return (dolar_special_case(line_lst, '?'));
 	if (line[1] == ' ' || line[1] == '\0')
 		add_at_end_of_list(line_lst, type, "$");
-	return (0);
+	i = 1;
+	while (is_word(line[i]))
+		i++;
+	add_at_end_of_list(line_lst, e_var, ft_substr(line, 1, i));
+	return (i);
 }

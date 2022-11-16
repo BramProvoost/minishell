@@ -6,7 +6,7 @@
 /*   By: bprovoos <bprovoos@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/26 17:46:28 by bprovoos      #+#    #+#                 */
-/*   Updated: 2022/11/10 15:10:57 by bprovoos      ########   odam.nl         */
+/*   Updated: 2022/11/16 09:16:25 by bprovoos      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ t_line_lst	*parser(char *line);
 int			word_case(t_line_lst **line_lst, char *line);
 int			is_word(char c);
 t_note		get_last_type(t_line_lst *node);
-void		pipe_case(t_line_lst **line_lst);
+int			pipe_case(t_line_lst **line_lst);
 int			less_than_case(t_line_lst **line_lst, char *line);
 int			greater_than_case(t_line_lst **line_lst, char *line);
 int			dolar_sign_case(t_line_lst **line_lst, char *line);

@@ -6,7 +6,7 @@
 /*   By: bprovoos <bprovoos@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/13 15:28:56 by bprovoos      #+#    #+#                 */
-/*   Updated: 2022/11/10 20:29:22 by bprovoos      ########   odam.nl         */
+/*   Updated: 2022/11/16 09:30:03 by bprovoos      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 int	is_word(char c)
 {
+	if (ft_strstr("| <>\'\"$", &c) != NULL)
+		return (0);
 	// if (c == '\'')
 	// 	return (single_qoute_case(qoute));
 	// if (c == '\"')
@@ -22,17 +24,17 @@ int	is_word(char c)
 	// 	return (1);
 	// if (qoute->is_double && c != '\0')
 	// 	return (1);
-	if (ft_isalpha(c))
-		return (1);
-	if (ft_isdigit(c))
-		return (1);
-	if (c == '-')
-		return (1);
+	// if (ft_isalpha(c))
+	// 	return (1);
+	// if (ft_isdigit(c))
+	// 	return (1);
+	// if (c == '-')
+	// 	return (1);
 	// if (ft_strchr("-", c) != NULL)
 	// 	return (1);
 	// if (c == '$' && qoute->is_single)
 	// 	return (1);
-	return (0);
+	return (1);
 }
 
 t_note	get_last_type(t_line_lst *node)
@@ -112,17 +114,18 @@ t_line_lst	*parser(char *line)
 	{
 		// if (line[i] == '\'' || line[i] == '\"')
 		// 	i += qoute_case(&line_lst, line[i], &qoutes);
-		// if (line[i] == '$')
-		// 	dolar_sign_case(&line_lst, &line[i]);
+		if (line[i] == '$')
+			i += dolar_sign_case(&line_lst, &line[i]);
 		if (is_word(line[i]))
 			i += word_case(&line_lst, &line[i]);
-		// if (line[i] == '|')
-		// 	pipe_case(&line_lst);
-		// if (line[i] == '<')
-		// 	i += less_than_case(&line_lst, &line[i]);
-		// if (line[i] == '>')
-		// 	i += greater_than_case(&line_lst, &line[i]);
-		i++;
+		if (line[i] == '|')
+			pipe_case(&line_lst);
+		if (line[i] == '<')
+			i += less_than_case(&line_lst, &line[i]);
+		if (line[i] == '>')
+			i += greater_than_case(&line_lst, &line[i]);
+		if (line[i] == ' ')
+			i++;
 	}
 	return (line_lst);
 }
