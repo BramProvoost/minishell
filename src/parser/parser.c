@@ -6,7 +6,7 @@
 /*   By: bprovoos <bprovoos@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/13 15:28:56 by bprovoos      #+#    #+#                 */
-/*   Updated: 2022/11/16 09:30:03 by bprovoos      ########   odam.nl         */
+/*   Updated: 2022/11/16 10:23:50 by bprovoos      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,7 @@ t_line_lst	*parser(char *line)
 		if (is_word(line[i]))
 			i += word_case(&line_lst, &line[i]);
 		if (line[i] == '|')
-			pipe_case(&line_lst);
+			i += pipe_case(&line_lst);
 		if (line[i] == '<')
 			i += less_than_case(&line_lst, &line[i]);
 		if (line[i] == '>')
