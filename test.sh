@@ -22,22 +22,20 @@
 
 ./minishell -c 'echo $'
 bash -c 'echo $'
-./minishell -c "echo '$'"
-bash -c "echo '$'"
-./minishell -c 'echo "$"'
-bash -c 'echo "$"'
+# ./minishell -c "echo '$'"
+# bash -c "echo '$'"
+# ./minishell -c 'echo "$"'
+# bash -c 'echo "$"'
 ./minishell -c "echo \$$"
 bash -c "echo \$$"
-./minishell -c "echo '\$$'"
-bash -c "echo '\$$'"
-./minishell -c '"echo $$"'
-bash -c '"echo $$"'
+# ./minishell -c "echo '\$$'"
+# bash -c "echo '\$$'"
+# ./minishell -c '"echo $$"'
+# bash -c '"echo $$"'
 ./minishell -c 'echo $USER'
 bash -c 'echo $USER'
-./minishell -c "echo \$USER"
-bash -c "echo \$USER"
-./minishell -c "echo '\$USER'"
-bash -c "echo '\$USER'"
+# ./minishell -c "echo '\$USER'"
+# bash -c "echo '\$USER'"
 # ./minishell -c echo Hello \$USER Welcome
 # echo Hello $USER Welcome
 # ./minishell -c echo Hello, \$USER Welcome
