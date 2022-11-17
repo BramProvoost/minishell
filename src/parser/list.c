@@ -6,7 +6,7 @@
 /*   By: bprovoos <bprovoos@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/11/09 13:50:10 by bprovoos      #+#    #+#                 */
-/*   Updated: 2022/11/10 14:33:57 by bprovoos      ########   odam.nl         */
+/*   Updated: 2022/11/17 15:24:16 by bprovoos      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,14 +60,15 @@ void	show_t_list(t_line_lst *node, char *input_line)
 	printf("-------- end line list table ---------\n\n");
 }
 
-void	delete_t_list(t_line_lst **head)
+void	delete_t_list(t_line_lst *head)
 {
 	t_line_lst	*temp;
 
-	while (*head != NULL)
+	while (head != NULL)
 	{
-		temp = *head;
-		*head = (*head)->next;
+		temp = head;
+		head = head->next;
+		free(temp->value);
 		free(temp);
 	}
 }
@@ -78,6 +79,8 @@ void	add_at_end_of_list(t_line_lst **head, int type, char *value)
 	t_line_lst	*temp;
 
 	new_node = (t_line_lst *)malloc(sizeof(t_line_lst));
+	if (!new_node)
+		return ;
 	new_node->next = NULL;
 	new_node->type = type;
 	new_node->value = value;

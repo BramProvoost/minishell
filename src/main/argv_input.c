@@ -6,7 +6,7 @@
 /*   By: bprovoos <bprovoos@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/14 21:10:54 by bprovoos      #+#    #+#                 */
-/*   Updated: 2022/10/27 16:44:20 by bprovoos      ########   odam.nl         */
+/*   Updated: 2022/11/16 19:49:13 by bprovoos      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	argv_has_flag(int argc, char *argv[])
 		return (0);
 	if (ft_strlen(argv[1]) < 2)
 		return (0);
-	if (ft_strncmp(argv[1], "-p", ft_strlen(argv[1])) != 0)
+	if (ft_strncmp(argv[1], "-c", ft_strlen(argv[1])) != 0)
 		return (0);
 	return (1);
 }

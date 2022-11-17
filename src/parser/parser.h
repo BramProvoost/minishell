@@ -6,7 +6,7 @@
 /*   By: bprovoos <bprovoos@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/26 17:46:28 by bprovoos      #+#    #+#                 */
-/*   Updated: 2022/11/16 09:16:25 by bprovoos      ########   odam.nl         */
+/*   Updated: 2022/11/17 18:08:15 by bprovoos      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include "../../libs/libft/libft.h"
 # include <stdlib.h>
 
-/*
+/*	check if the data removed before writing the next time.
 	+------+-------+------+     +------+-------+------+     +------+-------+------+
 	| prev | type  | next | <-> | prev | type  | next | <-> | prev | type  | next |
 	+------+       +------+     +------+       +------+     +------+       +------+
@@ -53,15 +53,16 @@ typedef enum e_note{
 /* The parser processes the input line and build the list with tokens */
 t_line_lst	*parser(char *line);
 int			word_case(t_line_lst **line_lst, char *line);
-int			is_word(char c);
 t_note		get_last_type(t_line_lst *node);
 int			pipe_case(t_line_lst **line_lst);
 int			less_than_case(t_line_lst **line_lst, char *line);
 int			greater_than_case(t_line_lst **line_lst, char *line);
 int			dolar_sign_case(t_line_lst **line_lst, char *line);
+int			qoute_case(t_line_lst **line_lst, char *line);
 char		*type_to_string(t_note type);
 void		show_t_list(t_line_lst *node, char *input_line);
-void		delete_t_list(t_line_lst **head);
+void		delete_t_list(t_line_lst *head);
+// void		delete_t_list(t_line_lst **head);
 void		add_at_end_of_list(t_line_lst **head, int type, char *value);
 int			length_of_list(t_line_lst *node);
 

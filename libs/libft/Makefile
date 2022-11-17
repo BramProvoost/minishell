@@ -6,7 +6,7 @@
 #    By: bprovoos <bprovoos@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/01/19 08:27:15 by bprovoos      #+#    #+#                  #
-#    Updated: 2022/10/21 12:29:57 by bprovoos      ########   odam.nl          #
+#    Updated: 2022/11/16 17:29:36 by bprovoos      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -70,7 +70,7 @@ BONUSSRCS	= ft_lstnew.o $\
 
 # The code below does not need to be changed
 
-CFLAGS		= -Wall -Wextra -Werror
+CFLAGS		= -Wall -Wextra -Werror -g -fsanitize=address
 RM 			= rm -rf
 SRCOBJ		= $(SRCS:.c=.o)
 BONUSOBJ	= $(BONUSSRCS:.c=.o)
