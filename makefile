@@ -1,6 +1,6 @@
 NAME = minishell
 
-FLAGS = -Wall -Werror -Wextra -MMD -g -fsanitize=address
+FLAGS =  -Wall -Wextra -Werror -MMD -g -fsanitize=address
 SRC_DIR = src
 OBJ_DIR = obj
 MAKE_FILE = makefile

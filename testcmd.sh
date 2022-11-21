@@ -2,10 +2,10 @@
 
 # ./minishell -p 'ls'
 
-./minishell -p 'export'
-./minishell -p 'export test'
-./minishell -p 'export test=mooi'
-./minishell -p 'export test='
+./minishell -p 'export' 
+# ./minishell -p 'export test'
+# ./minishell -p 'export test=mooi'
+# ./minishell -p 'export test='
 
 # ./minishell -p 'cd'
 # ./minishell -p 'cd ~'

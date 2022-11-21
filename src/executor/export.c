@@ -6,7 +6,7 @@
 /*   By: dyeboa <dyeboa@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/26 20:08:09 by dyeboa        #+#    #+#                 */
-/*   Updated: 2022/11/10 19:52:18 by dyeboa        ########   odam.nl         */
+/*   Updated: 2022/11/21 01:03:18 by dyeboa        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ int	check_env_exist(char **cmd, t_data *data)
 		i++;
 	str = malloc(i + 1 * (sizeof(char)));
 	ft_strlcpy(str, cmd[1], i + 1);
-	message_nl("str = ");
+	message_nl("cmd1 = ");
 	message(str);
 	while(data->envp[j])
 	{

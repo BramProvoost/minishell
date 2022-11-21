@@ -6,7 +6,7 @@
 /*   By: dyeboa <dyeboa@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/26 17:08:07 by dyeboa        #+#    #+#                 */
-/*   Updated: 2022/11/10 19:27:53 by dyeboa        ########   odam.nl         */
+/*   Updated: 2022/11/18 17:32:07 by dyeboa        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ void	execute_process(t_line_lst *stack, t_data *data, char **envp)
 		message_exit("fork went wrong", 0);
 	if (pid1 == 0)
 	{
-		write(1, "child\n", 6);
+		//write(1, "child\n", 6);
 		close(data->fd[0]);
 		if (execve(data->path, data->cmd, envp) == -1)
 			message_exit("execve went wrong", 0);
@@ -98,8 +98,8 @@ void	execute_process(t_line_lst *stack, t_data *data, char **envp)
 	{
 		close(data->fd[1]);
 		waitpid(pid1, &wstatus, 0);
-		if (WIFEXITED(wstatus))
-			message("proces einde\n");//, (WEXITSTATUS(wstatus)));
+		// if (WIFEXITED(wstatus))
+		// 	message("proces einde\n");//, (WEXITSTATUS(wstatus)));
 	}
 	return ;
 }
@@ -121,7 +121,6 @@ void	execute_commands(t_line_lst *stack, t_data *data, char **envp)
 		data->path = get_cmd_path(data->cmd[0], envp);
 		if (!data->path || !data->cmd[0])
 			message("geen path of splitted cmd");
-		message("DGEDFGDF");
 		if(stack)
 		{
 			if (pipe(data->fd) < 0)

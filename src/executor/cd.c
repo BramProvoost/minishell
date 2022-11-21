@@ -82,9 +82,10 @@ void	execute_cd(char **cmd, t_data *data)
 {
 	char 	*oldpath;
 	int		status;
+    char    cwd[4096 + 1];
 	
 	status = 0;
-	oldpath = getwd(NULL);
+	oldpath = getcwd(cwd, 4097);
 	
 	if (cmd[1] == NULL || (cmd[1][0] == '~' && cmd[1][1] == '\0'))
 		cd_home(data->envp);
