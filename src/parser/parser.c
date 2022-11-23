@@ -6,7 +6,7 @@
 /*   By: bprovoos <bprovoos@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/13 15:28:56 by bprovoos      #+#    #+#                 */
-/*   Updated: 2022/11/17 19:28:57 by bprovoos      ########   odam.nl         */
+/*   Updated: 2022/11/23 08:54:10 by bprovoos      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,25 +27,22 @@ t_note	get_last_type(t_line_lst *node)
 
 int	word_case(t_line_lst **line_lst, char *line)
 {
-	int		i;
 	int		len;
 	t_note	last;
 
-	i = 0;
-	last = get_last_type(*line_lst);
-	if (ft_strchr(" |<>&\'\"", line[i]) != NULL)
-		 return (0);
-	len = i;
-	while (ft_strchr(" |<>&\'\"", line[i + len]) == NULL)
+	len = 0;
+	while (ft_strchr(" |<>&\'\"", line[len]) == NULL)
 		len++;
+	if (len == 0)
+		return (0);
+	last = get_last_type(*line_lst);
 	if (last == e_start || last == e_pipe)
 		add_at_end_of_list(line_lst, e_cmd, ft_substr(line, 0, len));
 	if (last == e_cmd || last == e_word || last == e_delimiter || last == e_var)
 		add_at_end_of_list(line_lst, e_word, ft_substr(line, 0, len));
 	if (last == e_redirect_i || last == e_redirect_o || last == e_append)
 		add_at_end_of_list(line_lst, e_file, ft_substr(line, 0, len));
-	i += len;
-	return (i);
+	return (len);
 }
 
 // loop until second qoute
