@@ -6,7 +6,7 @@
 /*   By: bprovoos <bprovoos@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/26 17:46:28 by bprovoos      #+#    #+#                 */
-/*   Updated: 2022/11/17 18:08:15 by bprovoos      ########   odam.nl         */
+/*   Updated: 2022/11/23 14:46:58 by bprovoos      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # define DOUBLE_QOUTE 2
 
 # include "../../libs/libft/libft.h"
+# include "../expander/expander.h"
 # include <stdlib.h>
 
 /*	check if the data removed before writing the next time.
@@ -50,6 +51,14 @@ typedef enum e_note{
 	e_dqoute
 }	t_note;
 
+// typedef enum{
+// 	e_cmd,
+// 	e_word,
+// 	e_pipe,
+// 	e_redirect,
+// 	e_file,
+// }	t_note;
+
 /* The parser processes the input line and build the list with tokens */
 t_line_lst	*parser(char *line);
 int			word_case(t_line_lst **line_lst, char *line);
@@ -64,6 +73,7 @@ void		show_t_list(t_line_lst *node, char *input_line);
 void		delete_t_list(t_line_lst *head);
 // void		delete_t_list(t_line_lst **head);
 void		add_at_end_of_list(t_line_lst **head, int type, char *value);
+void		strjoin_last_value_of_list(t_line_lst **head, char *value);
 int			length_of_list(t_line_lst *node);
 
 // t_qoute		*init_qoutes(void);

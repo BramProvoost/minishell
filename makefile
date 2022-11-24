@@ -29,9 +29,12 @@ PARSER_FILES =	parser.c \
 				special_charakters.c \
 				qoutes.c
 
+EXPANDER_FI	=	expander.c
+
 GRAMMER_CKECKER_FILES =	grammer_checker.c
 
 SRC_FILES =		$(addprefix main/, $(MAIN_FILES)) \
+				$(addprefix expander/, $(EXPANDER_FI)) \
 				$(addprefix executor/, $(EXECUTE_FI)) \
 				$(addprefix grammer_checker/, $(GRAMMER_CKECKER_FILES)) \
 				$(addprefix parser/, $(PARSER_FILES))

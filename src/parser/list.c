@@ -6,7 +6,7 @@
 /*   By: bprovoos <bprovoos@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/11/09 13:50:10 by bprovoos      #+#    #+#                 */
-/*   Updated: 2022/11/17 15:24:16 by bprovoos      ########   odam.nl         */
+/*   Updated: 2022/11/24 07:31:01 by bprovoos      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,18 @@ void	delete_t_list(t_line_lst *head)
 		free(temp->value);
 		free(temp);
 	}
+}
+
+void	strjoin_last_value_of_list(t_line_lst **head, char *value)
+{
+	t_line_lst	*temp;
+
+	temp = *head;
+	if (temp == NULL)
+		return ;
+	while (temp->next != NULL)
+		temp = temp->next;
+	temp->value = ft_strjoin(temp->value, value);
 }
 
 void	add_at_end_of_list(t_line_lst **head, int type, char *value)

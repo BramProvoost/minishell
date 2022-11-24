@@ -6,17 +6,22 @@
 /*   By: bprovoos <bprovoos@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/12 09:55:42 by bprovoos      #+#    #+#                 */
-/*   Updated: 2022/11/10 19:23:07 by bprovoos      ########   odam.nl         */
+/*   Updated: 2022/11/24 08:39:59 by bprovoos      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 /* sources
+bash manual:
+https://www.gnu.org/software/bash/manual/
+bash flow
+http://www.aosabook.org/en/bash.html
+Example:
+https://github.com/vportens/minishell
+
 Example:
 https://github.com/nickdotht/minishell
 Example:
 https://github.com/yabtaour/Minishell-42
-bash flow
-http://www.aosabook.org/en/bash.html
 tutorial
 https://www.cs.purdue.edu/homes/grr/SystemsProgrammingBook/Book/Chapter5-WritingYourOwnShell.pdf
 explanation shell:
@@ -25,8 +30,6 @@ Shell Command Language:
 https://pubs.opengroup.org/onlinepubs/009604499/utilities/xcu_chap02.html
 BNF:
 https://en.wikipedia.org/wiki/Backus%E2%80%93Naur_form
-bash manual:
-https://www.gnu.org/software/bash/manual/
 
 bash parser"
 https://mywiki.wooledge.org/BashParser
@@ -41,7 +44,7 @@ https://github.com/Snaipe/Criterion
 #ifndef MAIN_H
 # define MAIN_H
 
-
+# define METACHARACTER " \t\n|&;()<>"
 
 # include <stdio.h>
 # include <stdlib.h>
@@ -95,7 +98,8 @@ $?		expand to the exit status of the most recently executed foreground pipeline
 To do:
 [X] Header dependency in makefile
 [X] Creata a flag option for giving command through argv
-[ ] Make unit testers
+[X] Make tester
+[ ] Start with checkig quotes
 
 Optional:
 [ ] *.d files in seperate folder

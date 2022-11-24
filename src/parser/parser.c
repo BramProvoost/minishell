@@ -6,7 +6,7 @@
 /*   By: bprovoos <bprovoos@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/13 15:28:56 by bprovoos      #+#    #+#                 */
-/*   Updated: 2022/11/23 08:54:10 by bprovoos      ########   odam.nl         */
+/*   Updated: 2022/11/24 08:41:51 by bprovoos      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int	word_case(t_line_lst **line_lst, char *line)
 {
 	int		len;
 	t_note	last;
+	char	*value;
 
 	len = 0;
 	while (ft_strchr(" |<>&\'\"", line[len]) == NULL)
@@ -36,16 +37,23 @@ int	word_case(t_line_lst **line_lst, char *line)
 	if (len == 0)
 		return (0);
 	last = get_last_type(*line_lst);
+	value = ft_substr(line, 0, len);
+	// ft_putchar_fd('|', 1);
+	// ft_putchar_fd(line[len - 1], 1);
+	// ft_putendl_fd("|", 1);
+	// if (line[len] != '\"')
+	// 	value = ft_strjoin(" ", value);
 	if (last == e_start || last == e_pipe)
-		add_at_end_of_list(line_lst, e_cmd, ft_substr(line, 0, len));
-	if (last == e_cmd || last == e_word || last == e_delimiter || last == e_var)
-		add_at_end_of_list(line_lst, e_word, ft_substr(line, 0, len));
+		add_at_end_of_list(line_lst, e_cmd, value);
+	if (last == e_cmd || last == e_delimiter)
+		add_at_end_of_list(line_lst, e_word, value);
+	if (last == e_word)
+		strjoin_last_value_of_list(line_lst, value);
 	if (last == e_redirect_i || last == e_redirect_o || last == e_append)
-		add_at_end_of_list(line_lst, e_file, ft_substr(line, 0, len));
+		add_at_end_of_list(line_lst, e_file, value);
 	return (len);
 }
 
-// loop until second qoute
 int	qoute_case(t_line_lst **line_lst, char *line)
 {
 	char	qoute;
@@ -53,13 +61,11 @@ int	qoute_case(t_line_lst **line_lst, char *line)
 
 	qoute = line[0];
 	i = 1;
-	while (line[i] && line[i] == qoute)
-	{
-		// if (line[i] == '$' && qoute == '\"')
-		// 	; //var
+	while (line[i] && line[i] != qoute)
 		i++;
-	}
-	add_at_end_of_list(line_lst, e_word, ft_substr(line, 1, i));
+	if (line[i])
+		i++;
+	add_at_end_of_list(line_lst, e_word, ft_substr(line, 0, i));
 	return (i);
 }
 
@@ -69,19 +75,12 @@ t_line_lst	*parser(char *line)
 	t_line_lst	*line_lst;
 
 	i = 0;
-	// line_lst = (t_line_lst *)malloc(sizeof(t_line_lst));
-	// line_lst->next = NULL;
-	// line_lst->prev = NULL;
-	// line_lst->type = e_start;
-	// line_lst->value = "";
 	line_lst = NULL;
 	while (line[i] != '\0')
 	{
 		if (line[i] == '\'' || line[i] == '\"')
 			i += qoute_case(&line_lst, &line[i]);
-		// else if (line[i] == '$')
-		// 	i += dolar_sign_case(&line_lst, &line[i]);
-		else if (ft_strchr("| <>\'\"", line[i]) == NULL)
+		else if (ft_strchr(" |<>\'\"", line[i]) == NULL)
 			i += word_case(&line_lst, &line[i]);
 		else if (line[i] == '|')
 			i += pipe_case(&line_lst);
