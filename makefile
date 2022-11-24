@@ -11,12 +11,12 @@ LIBFT = $(LIBFT_DIR)/libft.a
 
 READLINE_LIB = -lreadline
 
-EXECUTE_FI	=	executor.c \
-				file.c \
-				paths.c \
-				exit.c \
-				errors.c \
-				redirect.c 
+# EXECUTE_FI	=	executor.c \
+# 				file.c \
+# 				paths.c \
+# 				exit.c \
+# 				errors.c \
+# 				redirect.c 
 #export.c
 #builtin.c
 
@@ -31,7 +31,7 @@ PARSER_FILES =	parser.c \
 
 EXPANDER_FI	=	expander.c
 
-GRAMMER_CKECKER_FILES =	grammer_checker.c
+# GRAMMER_CKECKER_FILES =	grammer_checker.c
 
 SRC_FILES =		$(addprefix main/, $(MAIN_FILES)) \
 				$(addprefix expander/, $(EXPANDER_FI)) \

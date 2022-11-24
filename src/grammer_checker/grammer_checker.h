@@ -6,7 +6,7 @@
 /*   By: bprovoos <bprovoos@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/11/09 11:25:38 by bprovoos      #+#    #+#                 */
-/*   Updated: 2022/11/09 11:48:39 by bprovoos      ########   odam.nl         */
+/*   Updated: 2022/11/24 16:23:46 by bprovoos      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,6 @@
 
 # include "../parser/parser.h"
 
-int	is_valid_grammer(t_line_lst *head);
+// int	is_valid_grammer(t_line_lst *head);
 
 #endif
