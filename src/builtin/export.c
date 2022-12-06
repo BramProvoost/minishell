@@ -6,7 +6,7 @@
 /*   By: dyeboa <dyeboa@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/26 20:08:09 by dyeboa        #+#    #+#                 */
-/*   Updated: 2022/11/21 01:03:18 by dyeboa        ########   odam.nl         */
+/*   Updated: 2022/11/25 12:39:08 by dyeboa        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,5 +177,5 @@ void	execute_export(char **cmd, t_data *data)
 			message(data->envp[i]);
 		}
 		if (data->envp[i])
-			message_nl(data->envp[i]);
+			message(data->envp[i]);
 }

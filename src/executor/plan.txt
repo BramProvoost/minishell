@@ -1,8 +1,18 @@
-EXECUTE_FI	=	executor.c \
-				file.c \
-				paths.c \
-				exit.c \
-				errors.c
+pipex werkt
+Redirections
+
+builtins:
+cd
+echo
+exit
+export
+pwd
+unset
+exit code global
+signals
+
+
+
 
 Program flow
 1. lexer

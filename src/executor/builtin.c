@@ -6,7 +6,7 @@
 /*   By: dyeboa <dyeboa@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/28 11:36:37 by dyeboa        #+#    #+#                 */
-/*   Updated: 2022/11/10 19:03:31 by dyeboa        ########   odam.nl         */
+/*   Updated: 2022/11/25 17:16:08 by dyeboa        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ export
 $?
 exit
 unset
+SHLVL tot max 1000.
+OLDPWD - als niet geset, set NULL
 */
 
 int		is_builtin(char *str)
@@ -38,6 +40,8 @@ int		is_builtin(char *str)
 	if (!ft_strncmp(str, "$?", 2))
 		i = 1;;
 	if (!ft_strncmp(str, "unset", 5))
+		i = 1;
+	if (!ft_strncmp(str, "|", 1))
 		i = 1;
 	message(ft_itoa(i));
 	return (i);

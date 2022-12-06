@@ -13,14 +13,15 @@ READLINE_LIB = -lreadline
 EXECUTE_FI	=	executor.c \
 				file.c \
 				paths.c \
-				exit.c \
 				errors.c \
 				redirect.c \
 				builtin.c \
-				echo.c \
-				cd.c \
-				export.c
+				messages.c
 				
+BUILTIN_FI  =	echo.c \
+				cd.c \
+				exit.c \
+				export.c
 
 MAIN_FILES =	main.c \
 				line_input.c \
@@ -30,6 +31,7 @@ PARSER_FILES =	parser.c
 
 SRC_FILES =		$(addprefix main/, $(MAIN_FILES)) \
 				$(addprefix executor/, $(EXECUTE_FI)) \
+				$(addprefix builtin/, $(BUILTIN_FI)) \
 				$(addprefix parser/, $(PARSER_FILES))
 
 SRC = $(addprefix $(SRC_DIR)/, $(SRC_FILES))
